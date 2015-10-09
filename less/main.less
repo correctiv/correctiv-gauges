@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+.gauge {
+  // setting bottom padding to 50% creates a container
+  // that is half as high as it is wide
+  padding-bottom: 50%;
+  position: relative;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+}
+
+// background arc
+.gauge:before {
+  content: '';
+  background: red;
+  position: absolute;
+  height: 200%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+// foreground arc (cut out)
+.gauge:after {
+  content: '';
+  background: white;
+  position: absolute;
+  top: 60%;
+  right: 30%;
+  bottom: -40%;
+  left: 30%;
+  border-radius: 50%;
+}
+
+// container for rotating gauge meter
+.gauge__meter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transform: rotate(.1turn);
+  transform-origin: center bottom;
+}
+
+// gauge meter arc
+.gauge__meter:after {
+  content: '';
+  background: grey;
+  position: absolute;
+  height: 200%;
+  width: 100%;
+  border-radius: 50%;
+}
