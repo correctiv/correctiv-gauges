@@ -13,7 +13,7 @@
 // background arc
 .gauge:before {
   content: '';
-  background: red;
+  background: lightgrey;
   position: absolute;
   height: 200%;
   width: 100%;
@@ -38,16 +38,25 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  transform: rotate(.1turn);
+  animation: gauge__animation 1s forwards;
   transform-origin: center bottom;
 }
 
 // gauge meter arc
-.gauge__meter:after {
+.gauge__meter:before {
   content: '';
-  background: grey;
+  background: red;
   position: absolute;
   height: 200%;
   width: 100%;
   border-radius: 50%;
+}
+
+@keyframes gauge__animation {
+  0% {
+    transform: rotate(.5turn);
+  }
+  100% {
+    transform: rotate(.6turn);
+  }
 }
