@@ -14,19 +14,24 @@
   background-color: @color;
 }
 
-.gauge__animation(@target) {
-  from { transform: rotate(0.5turn) }
-  to   { transform: rotate(0.5turn + @target/2) }
+.gauge__meter--state(@value, @color) {
+  @animation-name: 'gauge__animation--@{value}';
+
+  // Animation declaration
+  @keyframes @animation-name {
+    from { transform: rotate(0.5turn) }
+    to   { transform: rotate(0.5turn + @value/200) }
+  }
+
+  // Styling rule declaration
+  .gauge__meter--@{value} {
+    animation: @animation-name 1s forwards;
+
+    &:before {
+      .gauge__arc(@color);
+    }
+  }
 }
-
-// -------------------------------------------------------
-// --- ANIMATION DECLARATION -----------------------------
-// -------------------------------------------------------
-
-@keyframes gauge__animation--10 { .gauge__animation(.10) }
-@keyframes gauge__animation--25 { .gauge__animation(.25) }
-@keyframes gauge__animation--50 { .gauge__animation(.50) }
-@keyframes gauge__animation--75 { .gauge__animation(.75) }
 
 
 // -------------------------------------------------------
@@ -69,39 +74,8 @@
   transform-origin: center bottom;
 }
 
-.gauge__meter--10 {
-  animation: gauge__animation--10 1s forwards;
+.gauge__meter--state(10, red);
+.gauge__meter--state(25, orange);
+.gauge__meter--state(50, green);
+.gauge__meter--state(75, purple);
 
-  // gauge meter arc
-  &:before {
-    .gauge__arc(red);
-  }
-}
-
-.gauge__meter--25 {
-  animation: gauge__animation--25 1s forwards;
-
-  // gauge meter arc
-  &:before {
-    .gauge__arc(orange);
-  }
-}
-
-.gauge__meter--50 {
-  animation: gauge__animation--50 1s forwards;
-
-  // gauge meter arc
-  &:before {
-    .gauge__arc(green);
-  }
-}
-
-
-.gauge__meter--75 {
-  animation: gauge__animation--75 1s forwards;
-
-  // gauge meter arc
-  &:before {
-    .gauge__arc(blue);
-  }
-}
