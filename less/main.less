@@ -16,7 +16,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  animation: gauge__animation 1s forwards;
+  animation: gauge__animation--25 1s forwards;
   transform-origin: center bottom;
 }
 
@@ -26,6 +26,15 @@
   height: 200%;
   width: 100%;
   border-radius: 50%;
+}
+
+.gauge__animation(@target){
+  from {
+    transform: rotate(0.5turn);
+  }
+  to {
+    transform: rotate(0.5turn + @target/2);
+  }
 }
 
 // cut out
@@ -50,11 +59,7 @@
   background: red;
 }
 
-@keyframes gauge__animation {
-  0% {
-    transform: rotate(.5turn);
-  }
-  100% {
-    transform: rotate(.6turn);
-  }
-}
+@keyframes gauge__animation--10 {.gauge__animation(.12)};
+@keyframes gauge__animation--25 {.gauge__animation(.25)};
+@keyframes gauge__animation--50 {.gauge__animation(.50)};
+@keyframes gauge__animation--75 {.gauge__animation(.75)};
