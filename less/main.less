@@ -1,5 +1,38 @@
 @charset "utf-8";
 
+
+// -------------------------------------------------------
+// --- MIXINS --------------------------------------------
+// -------------------------------------------------------
+
+.gauge__arc(@color) {
+  content: '';
+  position: absolute;
+  height: 200%;
+  width: 100%;
+  border-radius: 50%;
+  background-color: @color;
+}
+
+.gauge__animation(@target) {
+  from { transform: rotate(0.5turn) }
+  to   { transform: rotate(0.5turn + @target/2) }
+}
+
+// -------------------------------------------------------
+// --- ANIMATION DECLARATION -----------------------------
+// -------------------------------------------------------
+
+@keyframes gauge__animation--10 { .gauge__animation(.10) }
+@keyframes gauge__animation--25 { .gauge__animation(.25) }
+@keyframes gauge__animation--50 { .gauge__animation(.50) }
+@keyframes gauge__animation--75 { .gauge__animation(.75) }
+
+
+// -------------------------------------------------------
+// --- STYLING RULES -------------------------------------
+// -------------------------------------------------------
+
 .gauge {
   // setting bottom padding to 50% creates a container
   // that is half as high as it is wide
@@ -8,6 +41,23 @@
   width: 100%;
   height: 0;
   overflow: hidden;
+
+  // background arc
+  &:before {
+    .gauge__arc(lightgrey);
+  }
+
+  // cut out
+  &:after {
+    content: '';
+    background: white;
+    position: absolute;
+    top: 60%;
+    right: 30%;
+    bottom: -40%;
+    left: 30%;
+    border-radius: 50%;
+  }
 }
 
 // container for rotating gauge meter
@@ -16,50 +66,42 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  animation: gauge__animation--25 1s forwards;
   transform-origin: center bottom;
 }
 
-.gauge__arc {
-  content: '';
-  position: absolute;
-  height: 200%;
-  width: 100%;
-  border-radius: 50%;
-}
+.gauge__meter--10 {
+  animation: gauge__animation--10 1s forwards;
 
-.gauge__animation(@target){
-  from {
-    transform: rotate(0.5turn);
-  }
-  to {
-    transform: rotate(0.5turn + @target/2);
+  // gauge meter arc
+  &:before {
+    .gauge__arc(red);
   }
 }
 
-// cut out
-.gauge:after {
-  content: '';
-  background: white;
-  position: absolute;
-  top: 60%;
-  right: 30%;
-  bottom: -40%;
-  left: 30%;
-  border-radius: 50%;
+.gauge__meter--25 {
+  animation: gauge__animation--25 1s forwards;
+
+  // gauge meter arc
+  &:before {
+    .gauge__arc(orange);
+  }
 }
 
-// background arc
-.gauge:before:extend(.gauge__arc) {
-  background: lightgrey;
+.gauge__meter--50 {
+  animation: gauge__animation--50 1s forwards;
+
+  // gauge meter arc
+  &:before {
+    .gauge__arc(green);
+  }
 }
 
-// gauge meter arc
-.gauge__meter:before:extend(.gauge__arc) {
-  background: red;
-}
 
-@keyframes gauge__animation--10 {.gauge__animation(.12)};
-@keyframes gauge__animation--25 {.gauge__animation(.25)};
-@keyframes gauge__animation--50 {.gauge__animation(.50)};
-@keyframes gauge__animation--75 {.gauge__animation(.75)};
+.gauge__meter--75 {
+  animation: gauge__animation--75 1s forwards;
+
+  // gauge meter arc
+  &:before {
+    .gauge__arc(blue);
+  }
+}
