@@ -1,5 +1,11 @@
 @charset "utf-8";
 
+@grey-dark: #676767;
+@grey-light: #dadada;
+@red-dark: #b32628;
+@red-light: #de2f31;
+@orange: #f8ae4d;
+@green: #32CD32;
 
 // -------------------------------------------------------
 // --- MIXINS --------------------------------------------
@@ -49,7 +55,7 @@
 
   // background arc
   &:before {
-    .gauge__arc(lightgrey);
+    .gauge__arc(@grey-light);
   }
 
   // cut out
@@ -74,8 +80,9 @@
   transform-origin: center bottom;
 }
 
-.gauge__meter--state(10, red);
-.gauge__meter--state(25, orange);
-.gauge__meter--state(50, green);
-.gauge__meter--state(75, purple);
+.gauge__meter--state(5, @grey-dark);
+.gauge__meter--state(15, @red-dark);
+.gauge__meter--state(30, @red-light);
+.gauge__meter--state(60, @orange);
+.gauge__meter--state(75, @green);
 
