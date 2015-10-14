@@ -1,88 +1,12 @@
 @charset "utf-8";
 
-@grey-dark: #676767;
-@grey-light: #dadada;
-@red-dark: #b32628;
-@red-light: #de2f31;
-@orange: #f8ae4d;
-@green: #32CD32;
+@grey-dark: #8d8d8d;
+@grey: #cccccc;
+@grey-light: #eeeeee;
+@red: #de2f31;
+@orange-red: #de5c2f;
+@orange: #e5a147;
+@green: #41b565;
 
-// -------------------------------------------------------
-// --- MIXINS --------------------------------------------
-// -------------------------------------------------------
-
-.gauge__arc(@color) {
-  content: '';
-  position: absolute;
-  height: 200%;
-  width: 100%;
-  border-radius: 50%;
-  background-color: @color;
-}
-
-.gauge__meter--state(@value, @color) {
-  @animation-name: 'gauge__animation--@{value}';
-
-  // Animation declaration
-  @keyframes @animation-name {
-    from { transform: rotate(0.5turn) }
-    to   { transform: rotate(0.5turn + @value/200) }
-  }
-
-  // Styling rule declaration
-  .gauge__meter--@{value} {
-    animation: @animation-name 1s forwards;
-
-    &:before {
-      .gauge__arc(@color);
-    }
-  }
-}
-
-
-// -------------------------------------------------------
-// --- STYLING RULES -------------------------------------
-// -------------------------------------------------------
-
-.gauge {
-  // setting bottom padding to 50% creates a container
-  // that is half as high as it is wide
-  padding-bottom: 50%;
-  position: relative;
-  width: 100%;
-  height: 0;
-  overflow: hidden;
-
-  // background arc
-  &:before {
-    .gauge__arc(@grey-light);
-  }
-
-  // cut out
-  &:after {
-    content: '';
-    background: white;
-    position: absolute;
-    top: 60%;
-    right: 30%;
-    bottom: -40%;
-    left: 30%;
-    border-radius: 50%;
-  }
-}
-
-// container for rotating gauge meter
-.gauge__meter {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  transform-origin: center bottom;
-}
-
-.gauge__meter--state(5, @grey-dark);
-.gauge__meter--state(15, @red-dark);
-.gauge__meter--state(30, @red-light);
-.gauge__meter--state(60, @orange);
-.gauge__meter--state(75, @green);
-
+@import '_gauge';
+@import '_gauge-list';
