@@ -1,10 +1,11 @@
+@margin: 22px;
 
 // -------------------------------------------------------
 // --- STYLING RULES -------------------------------------
 // -------------------------------------------------------
 
 .gauge-list {
-  margin: 22px 0;
+  margin: @margin 0;
   padding: 0;
 }
 
@@ -12,7 +13,7 @@
   background: @grey-light;
   overflow: hidden;
   margin: 1px 0;
-  padding: 22px;
+  padding: @margin;
   list-style: none;
   color: @grey-dark;
 
@@ -28,16 +29,39 @@
   opacity: .3;
 }
 
+.gauge-item__link {
+  display: block;
+  margin: - @margin;
+  padding: @margin;
+  color: @grey-dark;
+  background: @grey-light;
+  transition: background 300ms;
+
+  &:hover,
+  &:active {
+    text-decoration: none;
+    background: lighten(@grey-light, 2%);
+    color: @grey-dark;
+  }
+}
+
 .gauge-item__thumbnail {
   width: 66%;
   max-width: 180px;
-  margin-bottom: 22px;
+  margin-bottom: @margin;
+}
+
+
+.gauge-item__thumbnail {
+  width: 66%;
+  max-width: 180px;
+  margin-bottom: @margin;
 }
 
 .gauge-item__thumbnail--inline {
   float: left;
   width: 100px;
-  margin-right: 22px;
+  margin-right: @margin;
 }
 
 .gauge-item__title {
