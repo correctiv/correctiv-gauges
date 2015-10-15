@@ -22,6 +22,12 @@
   }
 }
 
+.gauge-item--disabled {
+  &:extend(.gauge-item);
+  cursor: default;
+  opacity: .3;
+}
+
 .gauge-item__thumbnail {
   width: 66%;
   max-width: 180px;
