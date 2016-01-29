@@ -13,7 +13,7 @@
 }
 
 .gauge__meter--state(@value, @color) {
-  @animation-name: 'gauge__animation--@{value}';
+  @animation-name: ~"gauge-rotate-@{value}";
 
   // Animation declaration
   @keyframes @animation-name {
